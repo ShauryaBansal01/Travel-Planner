@@ -65,7 +65,7 @@ export default async function TripsPage() {
                             <Card className="h-full hover:shadow-md transition-shadow">
                                 <CardHeader>
                                     <CardTitle className= "line-clamp-1">
-                                      {trip.title}
+                                      {trip.title} 
                                       </CardTitle>
                                 </CardHeader>
                                 <CardContent>
