@@ -46,6 +46,7 @@ export default async function TripsPage() {
             <p>{trips.length === 0 ? "Start Planning your first trip by clicking the button above": 
             `You have ${trips.length} ${trips.length ===1 ? "trip" :"trips"} planned . ${upcomingTrips.length >0 ? `You have ${upcomingTrips.length} trips coming up!` : ""}`}</p>
         </CardContent>
+      </Card>
         <div>
             <h2 className= "text-xl font-semibold mb-4">Your Recent Trips</h2>
             {trips.length === 0 ? (
@@ -72,6 +73,9 @@ export default async function TripsPage() {
                                     <p className = "text-sm line-clamp-2 mb-2">
                                       {trip.description}
                                     </p>
+                                    <div className= "text-sm">
+                                        {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
+                                    </div>
                                 </CardContent>
                             </Card>
                         </Link>
@@ -79,7 +83,6 @@ export default async function TripsPage() {
                 </div>
             )}
         </div>
-      </Card>
     </div>
   );
 }
