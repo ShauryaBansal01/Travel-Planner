@@ -13,6 +13,9 @@ export default async function TripDetail(
   }
   const trip = await prisma.trip.findFirst({
     where: { id: tripid , userId: session.user?.id},
+    include: {
+      locations: true,
+    },
   })
 
   if(!trip){
