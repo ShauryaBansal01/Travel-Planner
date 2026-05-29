@@ -3,9 +3,9 @@ import NewLocationClient from "@/components/new-location";
 export default async function NewLocation({
   params,
 }: {
-  params: Promise<{ tripId: string }>;
+  params: Promise<{ tripid: string }>;
 }) {
-  const { tripId } = await params;
+  const { tripid } = await params;
 
-  return <NewLocationClient tripId={tripId} />;
+  return <NewLocationClient tripId={tripid} />;
 }

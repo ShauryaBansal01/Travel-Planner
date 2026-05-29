@@ -7,20 +7,22 @@ export async function getCountryFromCoordinates(
   lat: number,
   lng: number
 ): Promise<GeocodeResult> {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY!;
   const response = await fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`,
+    {
+      headers: {
+        "User-Agent": "TravelPlannerApp/1.0 (contact@travel-planner.local)",
+      },
+    }
   );
 
   const data = await response.json();
-
-  const result = data.results[0];
-  const countryComponent = result.address_components.find((component: any) =>
-    component.types.includes("country")
-  );
+  const address = data.address || {};
+  const country = address.country || "Unknown";
+  const formattedAddress = data.display_name || `${lat}, ${lng}`;
 
   return {
-    country: countryComponent.long_name || "Unknown",
-    formattedAddress: result.formatted_address,
+    country,
+    formattedAddress,
   };
 }

@@ -7,8 +7,17 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useState } from "react";
-import Map from "@/components/map";
+import dynamic from "next/dynamic";
 import SortableItinerary from "./sortable-itinerary";
+
+const Map = dynamic(() => import("@/components/map"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full flex items-center justify-center bg-gray-50 text-gray-500 rounded-lg border">
+      Loading interactive map...
+    </div>
+  ),
+});
 
 export type TripWithLocation = Trip & {
   locations: Location[];

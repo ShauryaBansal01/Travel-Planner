@@ -18,9 +18,9 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
 
           <form
             className="space-y-6"
-            action={(formData: FormData) => {
-              startTransation(() => {
-                addLocation(formData, tripId);
+            action={async (formData: FormData) => {
+              startTransation(async () => {
+                await addLocation(formData, tripId);
               });
             }}
           >
